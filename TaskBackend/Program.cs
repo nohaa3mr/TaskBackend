@@ -26,6 +26,7 @@ namespace TaskBackend
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddControllersWithViews().AddNewtonsoftJson(Options => Options.SerializerSettings.ReferenceLoopHandling= Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             builder.Services.AddSwaggerGen();
             var app = builder.Build();
             

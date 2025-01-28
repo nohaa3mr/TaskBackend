@@ -36,13 +36,13 @@ namespace Task.BLL.GenericRepository
         public IEnumerable<Category> GetAll()
         {
             
-           return _dbContext.Categories.ToList();
+           return _dbContext.Categories.Include(C =>C.Books).ToList();
            
         }
 
         public  Category GetById(int id)
         {
-          return  _dbContext.Categories.FirstOrDefault(X =>X.Id ==id);
+          return  _dbContext.Categories.Include(C => C.Books).FirstOrDefault(X =>X.Id ==id);
         }
 
         public void Update(Category item)

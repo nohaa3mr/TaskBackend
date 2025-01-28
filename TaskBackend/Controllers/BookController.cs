@@ -41,16 +41,7 @@ namespace TaskBackend.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBook([FromBody] Book book,int id)
         {
-            if(id!= book.Id)
-            {
-                return BadRequest("Book ID in the URL does not match the ID in the request body.");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            _bookService.Update(book);
+           _bookService.Update(book);
             return Ok();
         }
        

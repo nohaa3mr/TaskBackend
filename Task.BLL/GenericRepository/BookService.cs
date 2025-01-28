@@ -41,7 +41,7 @@ namespace Task.BLL.GenericRepository
 
         public Book GetById(int id)
         {
-          return  _dbContext.Books.FirstOrDefault(X =>X.Id ==id);
+          return  _dbContext.Books.Include(C=>C.Category).FirstOrDefault(X =>X.Id ==id);
         }
 
         public void Update(Book item)
