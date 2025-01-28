@@ -18,7 +18,7 @@ namespace Task.Core.Contexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server = . ; Database = TaskBackendUpSkilling ;Trusted_Connection=true ;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server = . ; Database = TaskBackendUpSkilling ;Trusted_Connection=true ;TrustServerCertificate=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

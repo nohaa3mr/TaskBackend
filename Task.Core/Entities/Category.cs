@@ -15,6 +15,6 @@ namespace Task.Core.Entities
         [Required]
         public string Description { get; set; }
         //One-to-Many Relationship: A category can have multiple Books.
-        public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+        public  ICollection<Book> Books { get; set; } = new List<Book>();
     }
 }

@@ -18,7 +18,7 @@ namespace Task.Core.Entities
         public string Author { get; set; }
         [Range(0, int.MaxValue)] 
         public int InStock { get; set; }
-        public virtual Category Category { get; set; }
+        public  Category Category { get; set; }
         public int CategoryId { get; set; }
 
     }
