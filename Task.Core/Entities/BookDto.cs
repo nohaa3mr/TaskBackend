@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace Task.Core.Entities
 {
-    public class Category:BaseEntity
-    { 
-        //Category ( CategoryId, Name, Description )
+    public class BookDto
+    {
         [Required]
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        //One-to-Many Relationship: A category can have multiple Books.
-        public  ICollection<Book> Books { get; set; } = new List<Book>();
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; }
+        public string Author { get; set; }
+        [Range(0, int.MaxValue)]
+        public int InStock { get; set; }
+        public string Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }
