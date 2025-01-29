@@ -6,6 +6,7 @@ using Task.BLL.GenericRepository;
 using Task.BLL.IGenericReopsitory;
 using Task.Core.Contexts;
 using Task.Core.Entities;
+using Task.Core;
 
 namespace TaskBackend
 {
@@ -24,6 +25,7 @@ namespace TaskBackend
             // builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddControllersWithViews().AddNewtonsoftJson(Options => Options.SerializerSettings.ReferenceLoopHandling= Newtonsoft.Json.ReferenceLoopHandling.Ignore);

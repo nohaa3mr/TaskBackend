@@ -13,10 +13,12 @@ namespace TaskBackend.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
+        private readonly IMapper _mapper;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService , IMapper mapper)
         {
             this._bookService = bookService;
+            this._mapper = mapper;
         }
         [HttpGet]
         public ActionResult<IEnumerable<Book>> GetAllBooks()
@@ -32,9 +34,10 @@ namespace TaskBackend.Controllers
             return Ok(book);
         }
         [HttpPost]
-        public IActionResult AddBook(Book book)
+        public ActionResult<Book> AddBook(BookDto bookDto)
         {
-            _bookService.Add(book);
+            var mappedBook = _mapper.Map<BookDto,Book>(bookDto);
+                _bookService.Add(mappedBook);
             return Ok();
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Task.BLL.IGenericReopsitory;
 using Task.Core.Entities;
@@ -10,10 +11,12 @@ namespace TaskBackend.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
+            this._mapper = mapper;
         }
 
     [HttpGet]
@@ -30,10 +33,11 @@ namespace TaskBackend.Controllers
         return Ok(category);
     }
     [HttpPost]
-    public IActionResult AddCategory(Category category)
+    public  ActionResult<Category> AddCategory(CategoryDto categoryDto)
     {
-        _categoryService.Add(category);
-        return Ok();
+        var mappedCategory =  _mapper.Map<CategoryDto, Category>(categoryDto);
+            _categoryService.Add(mappedCategory);
+        return Ok(mappedCategory);
     }
 
     [HttpPut("{id}")]
